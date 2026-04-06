@@ -1,121 +1,81 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
+import { ItemCard } from './components/ItemCard'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [cartCount, setCartCount] = useState<number>(0)
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    const handleAddToCart = () => {
+        setCartCount((prev) => prev + 1)
+    }
 
-      <div className="ticks"></div>
+    return (
+        <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
+            {/* Navbar Simple */}
+            <nav className="sticky top-0 z-10 bg-white border-b border-gray-200 px-6 py-4 flex justify-between items-center">
+                <h1 className="text-2xl font-black tracking-tight text-indigo-600">
+                    ITEM SHOP
+                </h1>
+                <div className="bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full font-bold">
+                    🛒 Panier : {cartCount}
+                </div>
+            </nav>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            {/* Hero Section */}
+            <header className="py-12 px-6 text-center">
+                <h2 className="text-4xl font-extrabold sm:text-5xl">
+                    Nos Meilleurs Articles
+                </h2>
+                <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+                    Découvrez notre sélection de composants gaming et accessoires.
+                    Cliquez sur les cartes pour tester vos fonctions React.
+                </p>
+            </header>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+            {/* Grille de produits */}
+            <main className="max-w-7xl mx-auto px-6 pb-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
+
+                    <ItemCard
+                        title="Clavier Mécanique"
+                        description="Switchs rouges linéaires pour une rapidité d'exécution sans pareille."
+                        price={89}
+                        isAvailable={true}
+                        onAddToCart={handleAddToCart}
+                    />
+
+                    <ItemCard
+                        title="Souris Sans Fil"
+                        description="Capteur optique 25k DPI et autonomie de 70 heures."
+                        price={55}
+                        isAvailable={true}
+                        onAddToCart={handleAddToCart}
+                    />
+
+                    <ItemCard
+                        title="Écran 144Hz"
+                        description="Dalle IPS 1ms pour une immersion totale dans vos jeux favoris."
+                        price={199}
+                        isAvailable={false}
+                        onAddToCart={handleAddToCart}
+                    />
+
+                    <ItemCard
+                        title="Casque Surround 7.1"
+                        description="Microphone antibruit et confort longue durée."
+                        price={120}
+                        isAvailable={true}
+                        onAddToCart={handleAddToCart}
+                    />
+
+                </div>
+            </main>
+
+            <footer className="border-t border-gray-200 py-10 text-center text-gray-500 text-sm">
+                Built with Vite + React + Tailwind
+            </footer>
+        </div>
+    )
 }
 
 export default App
