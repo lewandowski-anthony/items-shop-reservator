@@ -17,6 +17,9 @@ export const ItemModal = ({ item, onClose }: ModalProps) => {
     const title = item.title[lang] || item.title['fr'];
     const description = item.description[lang] || item.description['fr'];
 
+    const reservation = item.reservation;
+    const isAvailable = !reservation;
+
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
             <div className="absolute inset-0" onClick={onClose}></div>
@@ -61,10 +64,10 @@ export const ItemModal = ({ item, onClose }: ModalProps) => {
                                     {!showForm ? (
                                         <button
                                             onClick={() => setShowForm(true)}
-                                            disabled={item.is_reserved}
+                                            disabled={!isAvailable}
                                             className="w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold hover:bg-indigo-700 transition-all active:scale-95 disabled:bg-gray-200 disabled:text-gray-400"
                                         >
-                                            {item.is_reserved ? t('reserved') : t('form.start_reservation')}
+                                            {!isAvailable ? t('reserved') : t('form.start_reservation')}
                                         </button>
                                     ) : (
                                         <div className="border-t pt-6 animate-in slide-in-from-bottom-4 duration-300">

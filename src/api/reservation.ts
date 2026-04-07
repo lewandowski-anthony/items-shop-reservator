@@ -7,36 +7,57 @@ export const createReservation = async (input: CreateReservationInput) => {
         .from('reservations')
         .insert([input]);
 
-    if (resError) throw resError;
-
-    const { error: itemError } = await supabase
-        .from('items')
-        .update({ is_reserved: true })
-        .eq('id', input.item_id);
-
-    if (itemError) throw itemError;
+    if (resError) {
+        console.error(resError);
+        throw resError;
+    }
 };
 
-export const confirmReservationByToken = async (token: string | null) : Promise<Reservation> => {
+export const confirmReservationByToken = async (token: string | null): Promise<Reservation> => {
 
-    const { data: reservation, error: resError } = await supabase
+    if (!token) throw new Error("No token provided");
+
+    const { data: checkAny } = await supabase
+        .from('reservations')
+        .select('status, token')
+        .eq('status', 'pending')
+        .eq('token', token)
+        .maybeSingle();
+
+    if(!checkAny) {
+        const message = "No reservation with this token are waiting for confirmation.";
+        console.error(message);
+        throw new Error(message);
+    }
+
+    const { data: updated, error: resError } = await supabase
         .from('reservations')
         .update({ status: 'confirmed' })
         .eq('token', token)
         .eq('status', 'pending')
+        .select()
         .maybeSingle();
 
+
+    console.log(resError);
+    console.log(updated);
+
     if (resError) throw resError;
-    if (!reservation) {
-        throw new Error('Reservation not found or already confirmed');
+
+    if (!updated) {
+        const { data: existing } = await supabase
+            .from('reservations')
+            .select()
+            .eq('token', token)
+            .eq('status', 'confirmed')
+            .maybeSingle();
+
+        if (existing) {
+            return existing;
+        }
+
+        throw new Error('Reservation not found or invalid token');
     }
 
-    const { error: itemError } = await supabase
-        .from('items')
-        .update({ is_reserved: true })
-        .eq('id', reservation.item_id);
-
-    if (itemError) throw itemError;
-
-    return reservation;
+    return updated;
 };

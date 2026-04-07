@@ -1,11 +1,17 @@
-import { supabase } from './config';
+import {supabase} from './config';
 import type {Item} from "../types/database.ts";
 
 export const getItems = async (): Promise<Item[]> => {
-    const { data, error } = await supabase
+    const {data, error} = await supabase
         .from('items')
-        .select('*')
-        .order('created_at', { ascending: false });
+        .select(`
+            *,
+            reservation:reservations (
+              customer_name,
+              customer_email,
+              status
+            )
+        `);
 
     if (error) {
         console.error("Erreur from database :", error.message);

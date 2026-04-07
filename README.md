@@ -82,7 +82,6 @@ CREATE TABLE items (
   description jsonb,
   price decimal NOT NULL DEFAULT 0,
   image_url text DEFAULT 'https://placehold.co/600x400',
-  is_reserved boolean DEFAULT false,
   category text
 );
 
@@ -94,6 +93,7 @@ CREATE TABLE reservations (
   customer_email text NOT NULL,
   customer_phone text,
   status text DEFAULT 'pending',
+  token uuid DEFAULT gen_random_uuid()
   CONSTRAINT unique_item_reservation UNIQUE (item_id)
 );
 
@@ -101,7 +101,19 @@ ALTER TABLE items ENABLE ROW LEVEL SECURITY;
 ALTER TABLE reservations ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Allow public read access on items" ON items FOR SELECT USING (true);
+
 CREATE POLICY "Allow public insert access on reservations" ON reservations FOR INSERT WITH CHECK (true);
+
+CREATE POLICY "Enable select for anonymous via token" 
+ON reservations FOR SELECT 
+TO anon 
+USING (true);
+
+CREATE POLICY "Enable update for anonymous via token" 
+ON reservations FOR UPDATE 
+TO anon 
+USING (status = 'pending') 
+WITH CHECK (status = 'confirmed');
 
 CREATE INDEX idx_reservations_item_id ON reservations(item_id);
 ```

@@ -12,9 +12,9 @@ export interface Item {
     description: TranslatedText;
     price: number;
     image_url: string;
-    is_reserved: boolean;
     category?: string;
     date_of_availability: string;
+    reservation?: Reservation | null;
 }
 
 export interface Reservation {
