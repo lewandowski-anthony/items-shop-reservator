@@ -2,12 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { NavBar } from "./components/NavBar.tsx";
 import { HomePage } from "./components/HomePage.tsx";
 import { ConfirmEmail } from "./components/ConfirmEmail.tsx";
-
-const basename = import.meta.env.VITE_BASE_URL || '';
+import { ENV } from './config';
 
 function App() {
     return (
-        <BrowserRouter basename={basename}>
+        <BrowserRouter basename={ENV.BASE_URL}>
             <div className="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col">
                 <NavBar />
 

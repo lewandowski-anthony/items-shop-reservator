@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import HttpApi from 'i18next-http-backend';
+import { ENV } from '../config.ts';
 
 i18n
     .use(HttpApi)
@@ -12,7 +13,7 @@ i18n
             escapeValue: false,
         },
         backend: {
-            loadPath: '/locales/{{lng}}/translation.json',
+            loadPath: `${ENV.BASE_URL}/locales/{{lng}}/translation.json`,
         },
     });
 
