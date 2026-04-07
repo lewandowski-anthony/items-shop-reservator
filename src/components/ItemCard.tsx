@@ -1,10 +1,12 @@
+import { useTranslation } from 'react-i18next';
+
 interface ItemCardProps {
     title: string;
     description: string;
     price: number;
     imageUrl?: string;
     onAddToCart: () => void;
-    isAvailable: boolean;
+    isReserved: boolean;
 }
 
 export const ItemCard = ({
@@ -13,8 +15,9 @@ export const ItemCard = ({
                              price,
                              imageUrl = "https://via.placeholder.com/150",
                              onAddToCart,
-                             isAvailable
+                             isReserved
                          }: ItemCardProps) => {
+    const { t } = useTranslation();
     return (
         <div className="max-w-sm bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden p-4 transition-all hover:shadow-md">
             <img
@@ -32,14 +35,14 @@ export const ItemCard = ({
                 </p>
                 <button
                     onClick={onAddToCart}
-                    disabled={!isAvailable}
+                    disabled={isReserved}
                     className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${
-                        isAvailable
+                        !isReserved
                             ? "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95"
                             : "bg-gray-200 text-gray-500 cursor-not-allowed"
                     }`}
                 >
-                    {isAvailable ? "Ajouter au panier" : "Rupture de stock"}
+                    {!isReserved ? t('reserved') : "Rupture de stock"}
                 </button>
             </div>
         </div>

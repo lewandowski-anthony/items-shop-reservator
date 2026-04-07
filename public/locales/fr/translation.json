@@ -1,0 +1,10 @@
+{
+  "appName": "Un peu de nous chez vous",
+  "welcome": "Bienvenue sur mon application",
+  "mainPage": {
+    "label": "Trouvez votre bonheur !",
+    "description": "Découvrez nos objets mis en vente avant notre grand départ pour le Canada ! C'est l'occasion d'emporter un peu de nous avec vous !"
+  },
+  "reserved": "Reservé",
+  "basket": "Panier"
+}
