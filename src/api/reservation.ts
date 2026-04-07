@@ -1,36 +1,37 @@
 import type {CreateReservationInput, Reservation} from "../types/database.ts";
 import {supabase} from "./config.ts";
 
-export const createReservation = async (input: CreateReservationInput) => {
+const ERR_NO_TOKEN = "No token provided";
+const ERR_NO_PENDING_RESERVATION = "No reservation with this token are waiting for confirmation.";
+const ERR_INVALID_TOKEN = "Reservation not found or invalid token";
 
-    const { error: resError } = await supabase
+export const createReservation = async (input: CreateReservationInput) => {
+    const { error: insertError } = await supabase
         .from('reservations')
         .insert([input]);
 
-    if (resError) {
-        console.error(resError);
-        throw resError;
+    if (insertError) {
+        console.error(insertError);
+        throw insertError;
     }
 };
 
 export const confirmReservationByToken = async (token: string | null): Promise<Reservation> => {
+    if (!token) throw new Error(ERR_NO_TOKEN);
 
-    if (!token) throw new Error("No token provided");
-
-    const { data: checkAny } = await supabase
+    const { data: pendingReservation } = await supabase
         .from('reservations')
         .select('status, token')
         .eq('status', 'pending')
         .eq('token', token)
         .maybeSingle();
 
-    if(!checkAny) {
-        const message = "No reservation with this token are waiting for confirmation.";
-        console.error(message);
-        throw new Error(message);
+    if (!pendingReservation) {
+        console.error(ERR_NO_PENDING_RESERVATION);
+        throw new Error(ERR_NO_PENDING_RESERVATION);
     }
 
-    const { data: updated, error: resError } = await supabase
+    const { data: confirmedReservation, error: updateError } = await supabase
         .from('reservations')
         .update({ status: 'confirmed' })
         .eq('token', token)
@@ -38,26 +39,22 @@ export const confirmReservationByToken = async (token: string | null): Promise<R
         .select()
         .maybeSingle();
 
+    if (updateError) throw updateError;
 
-    console.log(resError);
-    console.log(updated);
-
-    if (resError) throw resError;
-
-    if (!updated) {
-        const { data: existing } = await supabase
+    if (!confirmedReservation) {
+        const { data: existingConfirmedReservation } = await supabase
             .from('reservations')
             .select()
             .eq('token', token)
             .eq('status', 'confirmed')
             .maybeSingle();
 
-        if (existing) {
-            return existing;
+        if (existingConfirmedReservation) {
+            return existingConfirmedReservation;
         }
 
-        throw new Error('Reservation not found or invalid token');
+        throw new Error(ERR_INVALID_TOKEN);
     }
 
-    return updated;
+    return confirmedReservation;
 };

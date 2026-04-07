@@ -121,40 +121,38 @@ CREATE INDEX idx_reservations_item_id ON reservations(item_id);
 Add datas : 
 
 ```
-INSERT INTO items (title, description, price, image_url, is_reserved)
+INSERT INTO items (title, description, price, image_url, category, date_of_availability)
 VALUES 
 (
-  '{"fr": "Appareil Photo Vintage", "en": "Vintage Camera", "es": "Cámara Vintage"}',
-  '{"fr": "Un bel objet qui nous a suivi partout. Parfait état !", "en": "A beautiful item that followed us everywhere. Perfect condition!", "es": "Un objeto hermoso que nos siguió a todas partes. ¡Perfecto estado!"}',
+  '{"fr": "Machine à laver", "en": "Washing Machine", "es": "Lavadora"}',
+  '{"fr": "Notre machine à laver qui a 4 ans, parfaitement fonctionnelle.", "en": "Our washing machine, 4 years old, perfectly functional.", "es": "Nuestra lavadora de 4 años, perfectamente funcional."}',
   85.00,
-  'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=500',
-  false
+  'https://ilhkopeaibvltnrbdjnt.supabase.co/storage/v1/object/public/items-images/washingmachine.jpg?width=500&quality=75',
+  'appliances',
+  '2026-08-28'
 ),
 (
-  '{"fr": "Vélo de ville", "en": "City Bike", "es": "Bicicleta de ciudad"}',
-  '{"fr": "Idéal pour vos trajets quotidiens. Antivol inclus.", "en": "Ideal for your daily commutes. Lock included.", "es": "Ideal para tus trayectos diarios. Candado incluido."}',
+  '{"fr": "Sèche-linge", "en": "Clothes Dryer", "es": "Secadora"}',
+  '{"fr": "Sèche-linge performant, idéal pour l''hiver.", "en": "Powerful dryer, ideal for winter.", "es": "Secadora potente, ideal para el invierno."}',
   120.00,
-  'https://images.unsplash.com/photo-1485965120184-e220f721d03e?w=500',
-  false
+  'https://ilhkopeaibvltnrbdjnt.supabase.co/storage/v1/object/public/items-images/sechelinge.jpg?width=500&quality=75',
+  'appliances',
+  '2026-08-28'
 ),
 (
-  '{"fr": "Plante Monstera", "en": "Monstera Plant", "es": "Planta Monstera"}',
-  '{"fr": "Elle a besoin d''une nouvelle maison avant notre envol !", "en": "She needs a new home before we fly out!", "es": "¡Necesita un nuevo hogar antes de nuestro vuelo!"}',
-  25.00,
-  'https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=500',
-  true
+  '{"fr": "Commode", "en": "Chest of Drawers", "es": "Cómoda"}',
+  '{"fr": "Commode 3 tiroirs en bois blanc, très bon état.", "en": "3-drawer chest in white wood, very good condition.", "es": "Cómoda de 3 cajones en madera blanca, muy buen estado."}',
+  45.00,
+  'https://ilhkopeaibvltnrbdjnt.supabase.co/storage/v1/object/public/items-images/commode.jpg?width=500&quality=75',
+  'furniture',
+  '2026-08-28'
 ),
 (
-  '{"fr": "Lampe de bureau", "en": "Desk Lamp", "es": "Lámpara de escritorio"}',
-  '{"fr": "Style industriel, ampoule fournie.", "en": "Industrial style, bulb included.", "es": "Estilo industrial, bombilla incluida."}',
-  15.00,
-  'https://images.unsplash.com/photo-1507473885765-e6ed657f99ad?w=500',
-  false
+  '{"fr": "Coiffeuse", "en": "Dressing Table", "es": "Tocador"}',
+  '{"fr": "Coiffeuse avec miroir et rangements intégrés.", "en": "Dressing table with mirror and built-in storage.", "es": "Tocador con espejo y almacenamiento integrado."}',
+  60.00,
+  'https://ilhkopeaibvltnrbdjnt.supabase.co/storage/v1/object/public/items-images/coiffeuse.jpg?width=500&quality=75',
+  'furniture',
+  '2026-08-28'
 );
-
-INSERT INTO reservations (item_id, customer_name, customer_email, status)
-SELECT id, 'Jean Dupont', 'jean.dupont@email.com', 'confirmed'
-FROM items 
-WHERE is_reserved = true 
-LIMIT 1;
 ```

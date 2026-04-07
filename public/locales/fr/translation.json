@@ -5,6 +5,7 @@
     "label": "Trouvez votre bonheur !",
     "description": "Découvrez nos objets mis en vente avant notre grand départ pour le Canada ! C'est l'occasion d'emporter un peu de nous avec vous !"
   },
+  "reserved_by": "Reservé par",
   "form": {
     "start_reservation": "Réserver cet objet",
     "title_info": "Réserver l'objet",
@@ -13,9 +14,14 @@
     "confirm": "Confirmer la réservation",
     "sending": "Demande de réservation en cours...",
     "cancel": "Annuler la réservation",
-    "thanks": "Merci pour votre réservation !",
-    "success_msg": "Votre réservation sur l'objet à bien été pris en compte. Vous serez contacté dans peu de temps par Anthony ou Charline",
+    "thanks": "Merci pour votre deman de réservation !",
+    "success_msg": "Votre demande de réservation a été effectué. Vous allez recevoir un mail afin de la confirmer.",
     "close": "Fermer la popup"
+  },
+  "confirm": {
+    "success_title": "Réservation confirmée !",
+    "success_message": "Votre réservation a été confirmée. N'oubliez pas de nous relancer par mail (lewandowski.anthony.pro@gmail.com) ou téléphone (+33638730689) si vous n'avez pas de nouvelle à la date de disponibilité",
+    "back_home": "Retour à la page principale"
   },
   "item": {
     "availabilityDate": "Date de disponibilité"
