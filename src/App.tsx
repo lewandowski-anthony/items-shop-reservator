@@ -1,8 +1,7 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { NavBar } from "./components/NavBar.tsx";
 import { HomePage } from "./components/HomePage.tsx";
 import { ConfirmEmail } from "./components/ConfirmEmail.tsx";
-import { ENV } from './config';
 import {useTranslation} from "react-i18next";
 import {useEffect} from "react";
 
@@ -15,7 +14,7 @@ function App() {
     }, [t, i18n.language]);
 
     return (
-        <BrowserRouter basename={ENV.BASE_URL}>
+        <Router>
             <div className="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col">
                 <NavBar />
 
@@ -31,7 +30,7 @@ function App() {
                     <p>© {new Date().getFullYear()} Mon Vide Maison</p>
                 </footer>
             </div>
-        </BrowserRouter>
+        </Router>
     );
 }
 

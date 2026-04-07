@@ -6,6 +6,9 @@
     "description": "Découvrez nos objets mis en vente avant notre grand départ pour le Canada ! C'est l'occasion d'emporter un peu de nous avec vous !"
   },
   "reserved_by": "Reservé par",
+  "status": {
+    "pending_button": "Une reservation est en attente de validation"
+  },
   "form": {
     "start_reservation": "Réserver cet objet",
     "title_info": "Réserver l'objet",
