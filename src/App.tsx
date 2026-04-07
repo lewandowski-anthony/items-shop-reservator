@@ -3,9 +3,11 @@ import { NavBar } from "./components/NavBar.tsx";
 import { HomePage } from "./components/HomePage.tsx";
 import { ConfirmEmail } from "./components/ConfirmEmail.tsx";
 
+const basename = import.meta.env.VITE_BASE_URL || '';
+
 function App() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={basename}>
             <div className="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col">
                 <NavBar />
 
