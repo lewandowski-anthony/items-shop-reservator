@@ -14,6 +14,7 @@ export interface Item {
     image_url: string;
     is_reserved: boolean;
     category?: string;
+    date_of_availability: string;
 }
 
 export interface Reservation {
@@ -23,6 +24,7 @@ export interface Reservation {
     customer_name: string;
     customer_email: string;
     customer_phone?: string;
+    token?: string;
     status: 'pending' | 'confirmed' | 'cancelled';
 }
 

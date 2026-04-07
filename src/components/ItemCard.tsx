@@ -17,23 +17,21 @@ export const ItemCard = ({ item }: { item: Item }) => {
             />
             <div className="mt-4 space-y-2">
                 <h3 className="text-xl font-bold text-gray-900">{title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-600 text-sm leading-relaxed line-clamp-1">
                     {description}
                 </p>
                 <p className="text-2xl font-black text-indigo-600">
                     {item.price} €
                 </p>
-                <button
-                    onClick={() => {}}
-                    disabled={item.is_reserved}
-                    className={`w-full py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${
-                        !item.is_reserved
-                            ? "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95"
-                            : "bg-gray-200 text-gray-500 cursor-not-allowed"
-                    }`}
-                >
-                    {!item.is_reserved ? t('reserved') : "Rupture de stock"}
-                </button>
+                <p className="text-xs font-bold text-grey-100">
+                    {t('item.availabilityDate')} : {item.date_of_availability}
+                </p>
+                <div className={`flex items-center justify-center p-3 rounded-2xl ${
+                    item.is_reserved ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                    : "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95"
+                }`}>
+                    {!item.is_reserved ? t('reserve') : t('reserved')}
+                </div>
             </div>
         </div>
     );

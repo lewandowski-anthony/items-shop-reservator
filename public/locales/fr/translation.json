@@ -5,6 +5,22 @@
     "label": "Trouvez votre bonheur !",
     "description": "Découvrez nos objets mis en vente avant notre grand départ pour le Canada ! C'est l'occasion d'emporter un peu de nous avec vous !"
   },
+  "form": {
+    "start_reservation": "Réserver cet objet",
+    "title_info": "Réserver l'objet",
+    "name": "Votre nom",
+    "email": "Email pour vous contacter",
+    "confirm": "Confirmer la réservation",
+    "sending": "Demande de réservation en cours...",
+    "cancel": "Annuler la réservation",
+    "thanks": "Merci pour votre réservation !",
+    "success_msg": "Votre réservation sur l'objet à bien été pris en compte. Vous serez contacté dans peu de temps par Anthony ou Charline",
+    "close": "Fermer la popup"
+  },
+  "item": {
+    "availabilityDate": "Date de disponibilité"
+  },
   "reserved": "Reservé",
+  "reserve": "Demander à réserver",
   "basket": "Panier"
 }

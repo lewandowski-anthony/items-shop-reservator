@@ -4,7 +4,17 @@
     "label": "Find our articles !",
     "description": "Discover our best articles that we sell before going to Canada ! This way, you'll have a piece of us with you !"
   },
+  "from": {
+    "start_reservation": "Ask for reservation",
+    "title_info": "Reserve the object",
+    "name": "Your name",
+    "email": "Email to contact you"
+  },
+  "item": {
+    "availabilityDate": "Availability date"
+  },
   "welcome": "Welcome on APP",
   "reserved": "Reserved",
+  "reserve": "Ask for reservation",
   "basket": "Basket"
 }

@@ -1,24 +1,28 @@
-import {NavBar} from "./components/NavBar.tsx";
-import {HomePage} from "./components/HomePage.tsx";
-import {useState} from "react";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { NavBar } from "./components/NavBar.tsx";
+import { HomePage } from "./components/HomePage.tsx";
+import { ConfirmEmail } from "./components/ConfirmEmail.tsx";
 
 function App() {
-
-    const [cartCount] = useState<number>(0)
-
     return (
-        <div className="min-h-screen bg-gray-50 text-gray-900 font-sans">
+        <BrowserRouter>
+            <div className="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col">
+                <NavBar />
 
-            <NavBar basketCount={cartCount}>
-            </NavBar>
+                <main className="flex-grow">
+                    <Routes>
+                        <Route path="/" element={<HomePage />} />
+                        <Route path="/confirm-reservation" element={<ConfirmEmail />} />
+                        <Route path="*" element={<HomePage />} />
+                    </Routes>
+                </main>
 
-            <HomePage/>
-
-            <footer className="border-t border-gray-200 py-10 text-center text-gray-500 text-sm">
-                {/*TODO: add foot*/}
-            </footer>
-        </div>
-    )
+                <footer className="border-t border-gray-200 py-10 text-center text-gray-500 text-sm">
+                    <p>© {new Date().getFullYear()} Mon Vide Maison</p>
+                </footer>
+            </div>
+        </BrowserRouter>
+    );
 }
 
-export default App
+export default App;

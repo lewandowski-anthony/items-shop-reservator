@@ -5,6 +5,12 @@
     "label": "¡Encuentra tu tesoro!",
     "description": "¡Echa un vistazo a nuestras cosas favoritas antes de que nos vayamos a Canadá! ¡Es la oportunidad perfecta para llevarte un pedacito de nosotros contigo!"
   },
+  "form": {
+    "start_reservation": "Solicitar reserva",
+    "title_info": "Reservar el objeto",
+    "name": "Tu nombre",
+    "email": "Email de contacto",
+  },
   "reserved": "Reservado",
   "basket": "Carrito"
 }
