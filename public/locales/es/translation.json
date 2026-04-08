@@ -9,7 +9,7 @@
     "start_reservation": "Solicitar reserva",
     "title_info": "Reservar el objeto",
     "name": "Tu nombre",
-    "email": "Email de contacto",
+    "email": "Email de contacto"
   },
   "reserved": "Reservado",
   "basket": "Carrito"

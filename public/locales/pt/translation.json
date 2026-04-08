@@ -1,0 +1,35 @@
+{
+  "appName": "Um pouco de nós em sua casa",
+  "welcome": "Bem-vindo à minha aplicação",
+  "mainPage": {
+    "label": "Encontre a sua felicidade!",
+    "description": "Descubra os nossos objetos à venda antes da nossa grande partida para o Canadá! É a oportunidade de levar um pouco de nós consigo!"
+  },
+  "reserved_by": "Reservado por",
+  "status": {
+    "pending_button": "Uma reserva está aguardando validação"
+  },
+  "form": {
+    "start_reservation": "Reservar este objeto",
+    "title_info": "Reservar o objeto",
+    "name": "Seu nome",
+    "email": "E-mail para contacto",
+    "confirm": "Confirmar a reserva",
+    "sending": "Pedido de reserva em curso...",
+    "cancel": "Cancelar a reserva",
+    "thanks": "Obrigado pelo seu pedido de reserva!",
+    "success_msg": "O seu pedido de reserva foi efetuado. Receberá um e-mail para confirmá-lo.",
+    "close": "Fechar janela"
+  },
+  "confirm": {
+    "success_title": "Reserva confirmada!",
+    "success_message": "A sua reserva foi confirmada. Não se esqueça de nos contactar por e-mail (lewandowski.anthony.pro@gmail.com) ou telefone (+33638730689) se não tiver notícias na data de disponibilidade.",
+    "back_home": "Voltar à página principal"
+  },
+  "item": {
+    "availabilityDate": "Data de disponibilidade"
+  },
+  "reserved": "Reservado",
+  "reserve": "Solicitar reserva",
+  "basket": "Carrinho"
+}

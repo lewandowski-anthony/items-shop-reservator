@@ -9,6 +9,7 @@ export const LanguageButton = () => {
                 <option value="fr">🇫🇷</option>
                 <option value="en">🇬🇧</option>
                 <option value="es">🇪🇸</option>
+                <option value="pt">🇵🇹</option>
             </select>
         </div>
     );
